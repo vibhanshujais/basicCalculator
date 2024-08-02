@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style></style>
+    <script></script>
+    <style>
+      .calculator {
+        height: 500px;
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #display {
+        width: 100%;
+        height: 70px;
+        margin-bottom: 20px;
+        padding: px;
+        font-size: 24px;
+        text-align: right;
+        border: none;
+        border-radius: 5px;
+        background-color: aliceblue;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+        function clearDisplay() {
+          let display = document.getElementById('display');
+          display.value = '';
+        }
+    
+        function deleteLastChar() {
+          let display = document.getElementById('display');
+          display.value = display.value.slice(0, -1);
+        }
+    
+        function appendChar(char) {
+          let display = document.getElementById('display'); 
+          display.value += char;
+        }
+    
+        function calculateResult() {
+          let display = document.getElementById('display'); 
+          try {
+            display.value = eval(display.value);
+            
+          } catch (e) {
+            display.value = 'Error';
+          }
+        }
+        function doSquare(){
+          let display = document.getElementById('display');
+          display.value = display.value * display.value;
+        }
+        function doCube(){
+          let display = document.getElementById('display');
+          display.value = display.value * display.value * display.value;
+        }
+        function doSqroot(){
+          let display = document.getElementById('display');
+          display.value = Math.sqrt(display.value);
+        }
+      
+      </script>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" name="" id="display">
+      <div class="buttons">
+        <button onclick="doSquare()">x<sup>2</sup></button>
+        <button onclick="doCube()">x<sup>3</sup></button>
+        <button onclick="doSqroot()">√</button>
+        <button onclick="appendChar('e')">e</button>
+        <button onclick="appendChar('/')">/</button>
+        <button onclick="appendChar('*')">*</button>
+        <button onclick="appendChar('-')">-</button>
+        <button onclick="clearDisplay()">AC</button>
+        <button onclick="appendChar('+')">+</button>
+        <button onclick="appendChar('0')">0</button>
+        <button onclick="appendChar('1')">1</button>
+        <button onclick="deleteLastChar()">DEL</button>
+        <button onclick="appendChar('2')">2</button>
+        <button onclick="appendChar('3')">3</button>
+        <button onclick="appendChar('4')">4</button>
+        <button onclick="appendChar('5')">5</button>
+        <button onclick="appendChar('6')">6</button>
+        <button onclick="appendChar('7')">7</button>
+        <button onclick="appendChar('8')">8</button>
+        <button onclick="appendChar('9')">9</button>
+        <button onclick="appendChar('.')">.</button>
+        <button onclick="calculateResult()">=</button>
+      </div>
+    </div>
+    
+  </body>
+</html>
