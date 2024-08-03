@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-    <style></style>
-    <script></script>
     <style>
       .calculator {
-        height: 500px;
+        height: 400px;
         width: 300px;
         margin: 50px auto;
         padding: 20px;
-        background-color: #f0f0f0;
+        background-color: #6e6666;
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px rgb(0, 0, 0);
       }
 
       #display {
@@ -26,7 +24,7 @@
         text-align: right;
         border: none;
         border-radius: 5px;
-        background-color: aliceblue;
+        background-color: rgb(82, 197, 90);
       }
 
       .buttons {
@@ -41,6 +39,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        box-shadow: 3px 3px 5px rgb(0, 0, 0);
       }
     </style>
     <script>
@@ -56,7 +55,14 @@
     
         function appendChar(char) {
           let display = document.getElementById('display'); 
-          display.value += char;
+          if(char === '^'){
+            const base = parseFloat(display.value);
+            const exponent = parseFloat(prompt('Enter the exponent:'));
+            const result = Math.pow(base, exponent);
+            display.value = result;
+          } else{
+            display.value += char;
+          }
         }
     
         function calculateResult() {
@@ -80,34 +86,40 @@
           let display = document.getElementById('display');
           display.value = Math.sqrt(display.value);
         }
-      
+        function doCubeRoot(){
+          let display = document.getElementById('display');
+          display.value = Math.cbrt(display.value);
+        }
       </script>
   </head>
   <body>
     <div class="calculator">
-      <input type="text" name="" id="display">
+      <input type="text" name="" id="display" >
       <div class="buttons">
         <button onclick="doSquare()">x<sup>2</sup></button>
         <button onclick="doCube()">x<sup>3</sup></button>
-        <button onclick="doSqroot()">√</button>
-        <button onclick="appendChar('e')">e</button>
+        <button onclick="doSqroot()">&#8730;</button>
+        <button onclick="doCubeRoot()">&#8731;</button>
         <button onclick="appendChar('/')">/</button>
         <button onclick="appendChar('*')">*</button>
-        <button onclick="appendChar('-')">-</button>
-        <button onclick="clearDisplay()">AC</button>
         <button onclick="appendChar('+')">+</button>
+        <button onclick="appendChar('-')">-</button>
+        <button onclick="appendChar('^')">^</button>
+        <button onclick="appendChar('e')">e</button>
         <button onclick="appendChar('0')">0</button>
+        <button onclick="clearDisplay()">C</button> 
         <button onclick="appendChar('1')">1</button>
-        <button onclick="deleteLastChar()">DEL</button>
         <button onclick="appendChar('2')">2</button>
         <button onclick="appendChar('3')">3</button>
+        <button onclick="deleteLastChar()">DEL</button>
         <button onclick="appendChar('4')">4</button>
         <button onclick="appendChar('5')">5</button>
         <button onclick="appendChar('6')">6</button>
+        <button onclick="appendChar('.')">.</button>
         <button onclick="appendChar('7')">7</button>
         <button onclick="appendChar('8')">8</button>
         <button onclick="appendChar('9')">9</button>
-        <button onclick="appendChar('.')">.</button>
+        
         <button onclick="calculateResult()">=</button>
       </div>
     </div>
